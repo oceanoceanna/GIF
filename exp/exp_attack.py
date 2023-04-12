@@ -22,7 +22,6 @@ from exp.exp import Exp
 from lib_gnn_model.gat.gat_net_batch import GATNet
 from lib_gnn_model.gin.gin_net_batch import GINNet
 from lib_gnn_model.gcn.gcn_net_batch import GCNNet
-from lib_gnn_model.graphsage.graphsage_net import SageNet
 from lib_gnn_model.sgc.sgc_net_batch import SGCNet
 from lib_gnn_model.node_classifier import NodeClassifier
 from lib_gnn_model.gnn_base import GNNBase
@@ -151,7 +150,7 @@ class ExpAttack(Exp):
             delete_edge_indices = np.logical_or(np.isin(unique_edge_index[0], delete_nodes),
                                                 np.isin(unique_edge_index[1], delete_nodes))
             remain_indices = np.logical_not(delete_edge_indices)
-            remain_indices = np.where(remain_indices == True)
+            remain_indices = unique_indices[np.where(remain_indices == True)]
 
         remain_encode = edge_index[0, remain_indices] * edge_index.shape[1] * 2 + edge_index[1, remain_indices]
         unique_encode_not = edge_index[1, unique_indices_not] * edge_index.shape[1] * 2 + edge_index[0, unique_indices_not]

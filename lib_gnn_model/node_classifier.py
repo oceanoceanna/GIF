@@ -18,7 +18,6 @@ import config
 from lib_gnn_model.gat.gat_net_batch import GATNet
 from lib_gnn_model.gin.gin_net_batch import GINNet
 from lib_gnn_model.gcn.gcn_net_batch import GCNNet
-from lib_gnn_model.graphsage.graphsage_net import SageNet
 from lib_gnn_model.sgc.sgc_net_batch import SGCNet
 from lib_gnn_model.gnn_base import GNNBase
 from parameter_parser import parameter_parser
@@ -43,7 +42,7 @@ class NodeClassifier(GNNBase):
 
         if self.target_model == 'SAGE':
             self.lr, self.decay = 0.01, 0.001
-            return SageNet(num_feats, 256, num_classes)
+
         elif self.target_model == 'GAT':
             self.lr, self.decay = 0.01, 0.001
             return GATNet(num_feats, num_classes)
